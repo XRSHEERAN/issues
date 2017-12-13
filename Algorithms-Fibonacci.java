@@ -38,5 +38,7 @@ can be pretty useful
    if(n%2==0)
      return [2*Second(a,b,n/2-1)+Second(a,b,n/2)]*Second(a,b,n/2);
    return Second(a,b,(n+1)/2)*Second(a,b,(n+1)/2)+Second(a,b,(n-1)/2)*Second(a,b,(n-1)/2);
+   
  }
+  //O(logn) legit
 }
