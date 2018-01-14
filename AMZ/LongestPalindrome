@@ -1,0 +1,32 @@
+//2d Dynamic Programming, still slow...
+class Solution {
+    public String longestPalindrome(String s) {
+        
+        boolean[][]dp=new boolean[s.length()][s.length()];
+        
+        int ind=0,leng=1;
+        
+        String max=s.substring(0,1);
+        
+        for(int i=0;i<s.length()-1;i++){
+            dp[i][i]=true;
+            dp[i][i+1]=(s.charAt(i)==s.charAt(i+1));
+            if(dp[i][i+1])
+                max=s.substring(i,i+2);
+        }
+        dp[s.length()-1][s.length()-1]=true;
+        
+        for(int i=3;i<s.length()+1;i++){
+            for(int j=0;j<=s.length()-i;j++){
+                dp[j][j+i-1]=(s.charAt(j)==s.charAt(j+i-1)) && dp[j+1][j+i-2];
+                if(dp[j][j+i-1]){
+                    leng=i;
+                    ind=j;
+                }
+            }
+        }
+        if(leng>2){
+        max=s.substring(ind,ind+leng);}
+        return max;
+    }
+}
