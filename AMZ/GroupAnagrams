@@ -1,0 +1,20 @@
+//Generally an easy one, but I was on the wring track at first, trying to implement sorting myself, which is there in Arrays class.
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> tbl=new HashMap();
+        char[]temp;
+        for(int i=0;i<strs.length;i++){
+            temp=strs[i].toCharArray();
+            Arrays.sort(temp);
+            //Arrays.Sort(temp,Collections.reverseOrder()) FMI
+            String key_temp=String.valueOf(temp);
+            if(!tbl.containsKey(key_temp)){
+                tbl.put(key_temp,new ArrayList<String>(Arrays.asList(strs[i])));
+            }
+            else{
+                tbl.get(key_temp).add(strs[i]);
+            }
+        }
+        return new ArrayList<List<String>>(tbl.values());
+    }
+}
