@@ -1,0 +1,23 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+//every callee is only decided by the closest root, for recursion, only consider the caller case
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        //from the start, null->reach the end, p->found one, q -> found the other; for the same root, the single child can only be on either two sides or in the same side which is the condition to test left and right
+        if(root==null || root==p || root==q)
+            return root;
+        TreeNode right=lowestCommonAncestor(root.right,p,q);
+        TreeNode left=lowestCommonAncestor(root.left,p,q);
+        if(right!=null && left!=null)
+            return root; // this is the condition that they endup pn two sides
+        return (left==null)? right : left;
+
+}}
