@@ -66,3 +66,25 @@ class Solution {
     }
 }
 ```
+* Minium Path (Here I use python, which is more challenging)
+
+```PYTHON
+class Solution:
+    def minPathSum(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        dp=[[grid[0][0]]]
+        for i in range(1,len(grid)):
+            dp.append([dp[i-1][0]+grid[i][0]]) 
+        
+        for i in range(1,len(grid[0])):
+            dp[0].append(dp[0][i-1]+grid[0][i])
+            
+        for i in range(1,len(grid[0])):
+            for j in range(1,len(grid)):
+                dp[j].append((dp[j-1][i]+grid[j][i]) if dp[j-1][i]<dp[j][i-1] else (dp[j][i-1]+grid[j][i]))
+                
+        return dp[len(grid)-1][len(grid[0])-1]
+```
