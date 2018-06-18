@@ -88,3 +88,39 @@ class Solution:
                 
         return dp[len(grid)-1][len(grid[0])-1]
 ```
+
+## Max Area
+
+```JAVA
+//Top down solution
+class Solution {
+    public int maximalRectangle(char[][] matrix) {
+        if(matrix==null || matrix.length==0 || matrix[0].length==0)
+            return 0;
+        int raw=matrix.length;
+        int col=matrix[0].length;
+        int[][]dpWidth=new int[raw][col];
+        
+        for(int i=0;i<raw;i++){
+            dpWidth[i][0]=(matrix[i][0]=='0')?0:1;
+            for(int j=1;j<col;j++){
+                dpWidth[i][j]=(matrix[i][j]=='0')?0:dpWidth[i][j-1]+1;
+            }
+        }
+        int arr=0;
+        for(int i=0;i<raw;i++){
+            for(int j=0;j<col;j++){
+                int ht=0;
+                int wd=dpWidth[i+ht][j];
+                while(ht+i<raw && wd>0){
+                    wd=Math.min(wd,dpWidth[i+ht][j]);
+                    arr=Math.max(arr,wd*(ht+1));
+                    ht++;
+                    
+                }
+            }
+        }
+        return arr;
+    }
+}
+```
