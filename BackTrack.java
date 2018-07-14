@@ -40,3 +40,38 @@ class Solution {
         return true;
     }
 }
+
+
+//a better way FYI
+class Solution {
+    private int count;
+    private HashSet<Integer> colS;
+    private HashSet<Integer> ldS;
+    private HashSet<Integer> rdS;
+    private int gl;
+    public int totalNQueens(int n) {
+        if(n==0)
+            return 0;
+        colS=new HashSet<Integer>();
+        ldS=new HashSet<Integer>();
+        rdS=new HashSet<Integer>();
+        count=0;
+        gl=n;
+        tracking(0);
+        return count;
+    }
+    public void tracking(int lvl){
+        if(lvl==gl)
+            this.count++;
+        //Here is the trick, for col set, the col number is unique; left diagnal, row-col is constant; right diagnal, sum is constant
+        for(int i=0;i<gl;i++){
+            if(!colS.contains(i) && !ldS.contains(lvl-i) && !rdS.contains(i+lvl)){
+                colS.add(i);ldS.add(lvl-i);rdS.add(i+lvl);
+                tracking(lvl+1);
+                colS.remove(i);
+                ldS.remove(lvl-i);
+                rdS.remove(i+lvl);
+            }
+        }
+    }
+}
