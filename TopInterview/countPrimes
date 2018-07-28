@@ -1,0 +1,22 @@
+class Solution {
+    public int countPrimes(int n) {
+        if(n<=1)
+            return 0;
+        int round=(int)Math.ceil(Math.pow(n,0.5)),ret=n-2;
+        //Set<Integer> st=new HashSet<Integer>(); it's super weird that hashset has a TLE
+        boolean[] st=new boolean[ret];
+        for(int i=2;i<=Math.min(ret,round);i++){
+            if(st[i-2])
+                continue;
+            int temp=i+i;
+            while(temp<n){
+                if(!st[temp-2])
+                    ret--;
+                st[temp-2]=true;
+                temp+=i;
+            }
+        }
+        
+        return ret;
+    }
+}
