@@ -11,7 +11,7 @@ public class HelloWorld{
     private static void strt(int[] A, int st, int ed){
         int n=ed-st+1;
         if(n==2){
-            if(A[st]<A[ed]) swap(A,st,ed);
+            if(A[ed]<A[st]) swap(A,st,ed);
         }
         else{
             for(int i=st;i<st+n/4;i++){
