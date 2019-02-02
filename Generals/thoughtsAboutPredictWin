@@ -1,0 +1,27 @@
+//I think the mean idea is that every time you minus dp you are converting prev max lft into current right, which is the move that a wise rival will make
+public class Solution {
+    /**
+     * @param nums: nums an array of scores
+     * @return: check if player 1 will win
+     */
+    public boolean PredictTheWinner(int[] nums) {
+        // write your code here
+        int[][] dp = new int[nums.length][nums.length];
+        dp[dp.length - 1][dp.length - 1] = nums[nums.length - 1];
+        for (int left = dp.length - 2; left >= 0; left--) {
+            for (int right = left; right < dp.length; right++) {
+                if (left == right) {
+                    dp[left][right] = nums[left];
+                } else {
+                    int pickLeft = nums[left] - dp[left + 1][right];
+                    int pickRight = nums[right] - dp[left][right - 1];
+                    dp[left][right] = Math.max(pickLeft, pickRight);
+                }
+            }
+        }
+        if (dp[0][dp.length - 1] >= 0) {
+            return true;
+        }
+        return false;
+    }
+}
