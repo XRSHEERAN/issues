@@ -15,6 +15,8 @@ Break the complicated conditions to seperate expressions can boost the execution
 
 * Don't use foreach in most cases.
 
+## Coding Style
+[Trying to follow this.](https://javaranch.com/style.jsp)
 
 ## About Me
 I am fluent with JAVA, C# and Python. Email: xqu25@wisc.edu
