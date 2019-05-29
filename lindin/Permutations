@@ -1,0 +1,48 @@
+public class Solution {
+    /*
+     * @param nums: A list of integers.
+     * @return: A list of permutations.
+     */
+     private class perm{
+         public HashSet<Integer> tbl;
+         public List<Integer> lst;
+         public perm(){
+             tbl=new HashSet<>();
+             lst=new LinkedList<>();
+         }
+         public perm(perm cp){
+             lst=new LinkedList<Integer>(cp.lst);
+             tbl=new HashSet<Integer>(cp.tbl);
+         }
+     }
+    public List<List<Integer>> permute(int[] nums) {
+        // write your code here
+        Queue<perm> roots=new LinkedList<>();
+        List<List<Integer>> ret=new LinkedList<>();
+        List<Integer> temp=new LinkedList<>();
+        if(nums.length==0){
+            ret.add(temp);
+            return ret;
+        }
+        perm curr=new perm();
+        roots.add(curr);
+        while(!roots.isEmpty()){
+            curr=roots.poll();
+            for(int i:nums){
+                if(!curr.tbl.add(i)){
+                    continue;
+                }
+                curr.lst.add(i);
+                if(curr.lst.size()==nums.length){
+                    ret.add(new LinkedList<Integer>(curr.lst));
+                }
+                else{
+                    roots.add(new perm(curr));
+                }
+                curr.tbl.remove(i);
+                curr.lst.remove(curr.lst.size()-1);
+            }
+        }
+        return ret;
+    }
+}
