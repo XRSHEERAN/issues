@@ -22,3 +22,36 @@ for(i = 1; i < n; i++)
 
 #### Application
 Pattern matching, such as shortest palindrome.
+```JAVA
+public class Solution {
+    /**
+     * @param str: String
+     * @return: String
+     */
+    public String convertPalindrome(String str) {
+        // Write your code here
+        if(str.length()==0){
+            return str;
+        }
+        StringBuilder s=new StringBuilder(str);
+        s.reverse();
+        s=new StringBuilder(str+'#'+s);
+        int[] table=new int[s.length()];
+        table[0]=0;
+        for(int i=1;i<s.length();++i){
+            int temp=table[i-1];
+            while(temp>0 && s.charAt(temp)!=s.charAt(i)){
+                temp=table[temp-1];//the next prefix
+            }
+            if(s.charAt(temp)!=s.charAt(i)){
+                table[i]=0;
+            }
+            else{
+                table[i]=temp+1;
+            }
+        }
+        s=new StringBuilder(str);
+        return new StringBuilder(s.substring(table[table.length-1])).reverse().toString()+s;
+    }
+}
+```
