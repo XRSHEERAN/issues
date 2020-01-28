@@ -1,57 +1,18 @@
 #### Key Idea
-Construct a table of substring that is both a prefix and suffix and start from then without going back to the front.
+- Construct a table for Pattern
+- Matching with the table created in previous step
 
 #### Implementation
-- Initial the first item of table to be 0, as it cannot match any prefix.
-- Compare the next char of both prefix and suffix, e.g. str\[table\[i-1]] and str\[i], using while loop until there is a match for reaches 0
-  - if they are not equal, then move the table\[i-1] forward, as it should still match str\[i-1]
-  - else increment
+*Assume the String we are matching is s and pattern we use is p:*
+##### (Pre/Suf)fix Table Construction:
+The value for each index would be: **the length of longest common portion shared by prefix and suffix(end in the particular index)**
 
-```JAVA
-f(0) = 0
-for(i = 1; i < n; i++)
-{
-	t = f(i-1)
-	while(t > 0 && b[i] != b[t])
-		t = f(t-1)
-	if(b[i] == b[t]){
-		++t
-	f(i) = t
-}
-```
+i.g.: for the index of i+2 in this: **p<sub>0</sub> , p<sub>1</sub> , p<sub>2</sub> , ... , p<sub>i</sub> , p<sub>i+1</sub> , p<sub>i+2</sub>**; if the longest common shared portion is p<sub>0</sub> , p<sub>1</sub> , p<sub>2</sub> == p<sub>i</sub> , p<sub>i+1</sub> , p<sub>i+2</sub>; then the value for index i+2 would be 3. Note that for single character, it is not considered as a match.
 
-#### Application
-Pattern matching, such as shortest palindrome.
-```JAVA
-public class Solution {
-    /**
-     * @param str: String
-     * @return: String
-     */
-    public String convertPalindrome(String str) {
-        // Write your code here
-        if(str.length()==0){
-            return str;
-        }
-        StringBuilder s=new StringBuilder(str);
-        s.reverse();
-        s=new StringBuilder(str+'#'+s);
-        int[] table=new int[s.length()];
-        table[0]=0;
-        for(int i=1;i<s.length();++i){
-            int temp=table[i-1];
-            while(temp>0 && s.charAt(temp)!=s.charAt(i)){
-                temp=table[temp-1];//the next prefix
-            }
-            if(s.charAt(temp)!=s.charAt(i)){
-                table[i]=0;
-            }
-            else{
-                table[i]=temp+1;
-            }
-        }
-        s=new StringBuilder(str);
-        return new StringBuilder(s.substring(table[table.length-1])).reverse().toString()+s;
-    }
-}
-```
+Example:
+___
+String: a b a c d a b
+Index : 0 1 2 3 4 5 6
+Value : 0 0 1 0 0 1 2
+___
+
