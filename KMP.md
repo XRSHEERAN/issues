@@ -25,4 +25,15 @@ Index :  0 1 2 3 4 5 6
 Value : -1 0 0 1 0 0 1
 ___
 
+```JAVA
+//Code for constructing table
+pi[0] = -1;
+int k = -1;
+for(int i = 1; i <= m; i++) {
+while(k >= 0 && P[k+1] != P[i])
+  k = pi[k];
+pi[i] = ++k;
+}
+```
+
 ### 2. Use The Table:
