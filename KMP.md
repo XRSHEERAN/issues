@@ -25,6 +25,7 @@ Index :  0 1 2 3 4 5 6
 Value : -1 0 0 1 0 0 1
 ___
 
+The Algorithm to construct the table is based on the idea that pi[i], which is the value for the pre/suf fix of the 
 ```JAVA
 //Code for constructing table
 pi[0] = -1;
