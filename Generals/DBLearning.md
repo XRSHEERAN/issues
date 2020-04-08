@@ -36,3 +36,14 @@ CUSTOMER_ID INT references CUSTOMERS(ID),
 PRIMARY KEY (AGE,NAME)
 );
 ```
+### Check
+apply constraint on data entry based on property.
+```
+ADD Constraint AGE CHECK (Age>10)
+```
+
+### Index
+Make an attribute to index each entry:
+```
+CREATE INDEX index_nameON table_name ( column1, column2.....)
+```
