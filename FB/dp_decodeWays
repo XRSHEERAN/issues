@@ -1,0 +1,25 @@
+class Solution {
+    public int numDecodings(String s) {
+        int idx=1;
+        if(s.length()<1 || s.charAt(0)=='0'){
+            return 0;
+        }
+        int[] dp = new int[s.length()+1];
+        dp[0] = 1;
+        dp[1] = 1;
+        while(idx<s.length()){
+            int curr = s.charAt(idx) - '0', prev = s.charAt(idx-1)-'0';
+            if(curr>0){
+                dp[idx+1]+=dp[idx];
+            }
+            if(prev > 0){
+                int sum = prev*10 + curr;
+                if(sum<27){
+                    dp[idx+1] += dp[idx-1];
+                }
+            }
+            ++idx;
+        }
+        return dp[s.length()];
+    }
+}
