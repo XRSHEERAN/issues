@@ -1,3 +1,4 @@
+[Algorithm Ref](https://www.programcreek.com/2013/08/leetcode-problem-classification/)
 ## KMP
 #### Algorithm
 - construct pre/post match table by matching itself
