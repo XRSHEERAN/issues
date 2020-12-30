@@ -71,3 +71,51 @@ public class Solution {
     }
 }
 ```
+
+#### More sophisticated slow and fast pointer
+two rounds solutions:
+- first round, determines if there is a circle
+- second round, two pointers meet at the starting point of the circle
+
+**Math proof:** first round, assume the length of the distance before reaching circle to be *n*, and the point S and F met to starting point of circle to be e ( note that f ans s meets within one circle, as their difference would be less then one circle and F is stepping in 1 at a time ). Thus, let c be the circle diagram, 2\*(n+e) = n+e+x\*c => n+c = x\*c, which means that two pointers meet at start:
+
+<img src="https://github.com/XRSHEERAN/Algorithms/blob/master/slowfast.jpg" width="1200" height="600" />
+
+```
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function detectCycle(head: ListNode | null): ListNode | null {
+    // two rounds slow and fast pointer
+    if(head == null || head.next == null){
+        return null;
+    }
+    let s= head.next, f= head.next.next;
+    while( s != f){
+        // end of the list reached, no loop
+        if(f === null || f.next === null){
+            return null;
+        }
+        // when both on the loop, f is chasing the s pointer, which is 1 node at a time, thus will always meet s
+        s = s.next;
+        f = f.next.next;
+    }
+    // end of second round and restart slow pointer, while decreasing f speed, as (n+e)%c = 0
+    s = head;
+    // meat at starting position of circle
+    while(s!=f){
+        s = s.next;
+        f = f.next;
+    }
+    return f;
+};
+```
