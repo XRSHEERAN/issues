@@ -5,9 +5,12 @@
 158     Read N Characters Given Read4 II - Call multiple times          32.7%   Hard    
 10      Regular Expression Matching         26.6%   Hard    
 953     Verifying an Alien Dictionary           54.5%   Easy    
-297     Serialize and Deserialize Binary Tree           46.6%   Hard    
+297     Serialize and Deserialize Binary Tree           46.6%   Hard 
+
 91      Decode Ways         24.2%   Medium  [my solution](https://github.com/XRSHEERAN/Algorithms/blob/master/FB/DecodeFile.md)
+
 621     Task Scheduler          48.2%   Medium  [my solution](https://github.com/XRSHEERAN/Algorithms/blob/master/FB/scheduler.java)
+
 253     Meeting Rooms II            45.4%   Medium  
 15      3Sum            26.3%   Medium  
 560     Subarray Sum Equals K           43.8%   Medium  
