@@ -1,5 +1,6 @@
 #   Title    Acceptance  Difficulty  
-301     Remove Invalid Parentheses          42.7%   Hard    
+301     Remove Invalid Parentheses          42.7%   Hard    [my solution](https://github.com/XRSHEERAN/Algorithms/blob/master/FB/dfsRemoveParenthesis.java)
+
 273     Integer to English Words            26.6%   Hard    
 67      Add Binary          43.7%   Easy    
 158     Read N Characters Given Read4 II - Call multiple times          32.7%   Hard    
